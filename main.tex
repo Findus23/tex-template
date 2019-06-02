@@ -1,0 +1,80 @@
+\input{template.tex}
+\hypersetup{
+	pdftitle={The Title of the Bachelor Thesis},
+	pdfauthor={Lukas Winkler}
+}
+\title{The Title of the Bachelor Thesis}
+\subtitle{bla bla}
+\author{Lukas Winkler\footnote{\texttt{a01505981@unet.univie.ac.at}}}
+%\publishers{TEST}
+\date{1. August 2019}
+
+\usepackage{lipsum}  % just for lorem ipsum
+\newcommand{\blabla}{Bla bla bla}
+
+\begin{document}
+	
+\maketitle
+
+\tableofcontents
+
+\chapter{Introduction}\label{introduction}
+
+\lipsum[1]
+
+\section{\blabla}
+
+\lipsum[1-2]
+
+
+\begin{figure}
+	\centering
+%	\includegraphics[width=.5\linewidth]{thefile.png}
+	\caption{\blabla}
+	\label{fig:bla}
+\end{figure}
+
+\chapter{Another chapter}
+
+\lipsum[1-2]
+
+Even more \enquote{Text} with \SI{20.4e5}{\kilo\meter\per\hour}!
+
+\begin{align}
+	\dv{a}
+\end{align}
+
+\section{More text}
+
+\lipsum[2-5]\footcite{guowhite}
+
+
+
+\begin{itemize}
+\setlength\itemsep{-0.5em}
+\item test
+\item more test
+\end{itemize}
+
+See Chapter  \ref{introduction}.
+
+
+\section{An equation}
+
+\begin{align}
+	a&=\sqrt{4} \\
+	b&=a^2
+\end{align}
+
+% ----------------------------------------------------------
+
+\appendix
+\chapter{Some data}
+
+\lipsum[1]
+
+\printbibliography
+
+
+\end{document}
+

@@ -1,0 +1,163 @@
+\RequirePackage[l2tabu, orthodox]{nag}
+
+\documentclass[
+a4paper,    
+% draft,       %% produce only a draft version (mark lines that need manual edition and don't show graphics)
+bibliography=totoc, % add bibilography to table of contents
+11pt,         %% set default font size to 11 point
+DIV=14, % replace this with a larger number to get less padding around all text (or use calc for the ideal border)
+parskip=half, % how much space between paragraphs. If you prefer indention instead of space between paragraphs remove it
+oneside, % replace with twoside before printing
+%draft, % uncomment for faster compilation
+british, % language of the document
+%appendixprefix=true % in case you want Appendix A written in front of appendix headings
+]{scrbook}
+
+
+
+%--------------------------- Important Packages --------------------------------
+
+%\usepackage[ngerman]{babel}
+
+% required for proper characters
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+
+% helps with equations
+\usepackage{amsmath,amssymb,amstext}
+\usepackage{amsthm}
+
+
+\usepackage{microtype} %slightly changes letter spacing to make text fit better
+
+\usepackage{aas_macros} % this imports the aas_macros.sty file that is required to print bibtex exported from ADS
+
+
+%------------------------------- Helpful Features ---------------------------------
+
+% properly format 
+\usepackage{siunitx}
+\sisetup{
+	per-mode=fraction, % create a fraction instead of km h^-1
+%	locale=DE,
+	locale=US,
+	output-decimal-marker = {.}, % usefull even for German
+	separate-uncertainty = true,
+	quotient-mode=fraction
+}
+
+%\usepackage{nicefrac}
+\usepackage[autostyle=true]{csquotes} % automatically create nice quotes with \enquote{text}
+\usepackage{pdflscape}  
+%\usepackage{cancel}  % In case you want to cancel out some values in an equation
+\usepackage{physics} % lots of shortcuts for physics equations (e.g. $\dv{a}$)
+
+\usepackage{subcaption} % allows to nicely put two images next to each other
+\usepackage{tabularx}
+\usepackage{booktabs} % nicer table seperations
+
+%----------------------------------- Style decisions -----------------------------------
+
+\hyphenpenalty=750 % break less words than default - try different values for success
+\interfootnotelinepenalty=10000 % splitting footnotes between pages is really ugly and should only be done if really necessary 
+\usepackage[sc]{mathpazo} % use the Palatino font and a fitting math font
+
+\pagestyle{headings} 
+% how the header of the pages looks like
+% for something nicer take a look at fancyhdr
+
+\usepackage{xcolor} % allows defining colors
+
+% not sure what these two do, but they definitly do something
+\colorlet{bluebookmarks}{blue}
+\colorlet{blueallcolors}{blue}
+
+%----------------------------------- Bibliography ----------------------------------------
+
+
+\PassOptionsToPackage{hyphens}{url}\usepackage[
+	backend=biber,
+	style=authortitle-comp, % choose a style from https://de.overleaf.com/learn/latex/Biblatex_citation_styles
+	%sortlocale=de_AT,
+	sortlocale=en_GB,
+	backref=true % use if you like it -- puts a link to the page where it is cited into the bibliography
+]{biblatex}
+
+\addbibresource{bibliographie.bib}
+
+
+%---------------------------------- Source Code -----------------------------------------
+
+%\usepackage[scaled=.85]{FiraMono}
+%\usepackage{listings}
+%\usepackage{scrhack} % should fix warning
+%\definecolor{strings}{HTML}{008000}
+%\definecolor{keywords}{HTML}{000080}
+%\definecolor{mygray}{rgb}{0.58,0,0.82}
+%
+%\lstset{ %
+%	%	backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}; should come as last argument
+%	basicstyle=\footnotesize\ttfamily,        % the size of the fonts that are used for the code
+%	basewidth=0.5em,
+%	breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+%	breaklines=true,                 % sets automatic line breaking
+%	captionpos=b,                    % sets the caption-position to bottom
+%	%	commentstyle=\color{mygreen},    % comment style
+%	deletekeywords={...},            % if you want to delete keywords from the given language
+%	escapeinside={(*}{*)},          % if you want to add LaTeX within your code
+%	extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+%	frame=single,	                   % adds a frame around the code
+%	keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+%	keywordstyle=\color{keywords},       % keyword style
+%	morekeywords={*,...},            % if you want to add more keywords to the set
+%	numbers=none,                    % where to put the line-numbers; possible values are (none, left, right)
+%	numbersep=5pt,                   % how far the line-numbers are from the code
+%	rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+%	showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+%	showstringspaces=false,          % underline spaces within strings only
+%	showtabs=false,                  % show tabs within strings adding particular underscores
+%	stepnumber=1,                    % the step between two line-numbers. If it's 1, each line will be numbered
+%	stringstyle=\color{strings},     % string literal style
+%	tabsize=2,	                   % sets default tabsize to 2 spaces
+%	language=bash
+%}
+%\lstset{literate=% support Umlauts in listings
+%	{Ö}{{\"O}}1
+%	{Ä}{{\"A}}1
+%	{Ü}{{\"U}}1
+%	{ß}{{\ss}}1
+%	{ü}{{\"u}}1
+%	{ä}{{\"a}}1
+%	{ö}{{\"o}}1
+%}
+
+
+%--------------------------------------- PDF output and hyperlinks ----------------------------
+
+
+\usepackage{graphicx} % support graphics
+
+\pdfcompresslevel=9 % create small files (I think it is by default when using hyperref)
+\pdfsuppresswarningpagegroup=1 % https://tex.stackexchange.com/a/78020/66733
+
+
+% support hyperlinks in the PDF
+
+\usepackage[ %
+colorlinks=false,   %% turn on colored links (true is better for on-screen reading, false is better for printout versions)
+linkcolor = blue,
+allcolors=blue,
+%%% PDF-specific display options
+bookmarks=true,          %% if true, generate PDF bookmarks (requires two passes of pdflatex)
+bookmarksopen=false,     %% if true, show all PDF bookmarks expanded
+bookmarksnumbered=false, %% if true, add the section numbers to the bookmarks
+%pdfstartpage={1},        %% determines, on which page the PDF file is opened
+%  pdfpagemode=None         %% None, UseOutlines (=show bookmarks), UseThumbs (show thumbnails), FullScreen
+draft=false
+]{hyperref}
+
+
+
+
+
